@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fmiModelDescription
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  fmiVersion="2.0"
+  modelName="LorenzAttractor"
+  guid="{d9e9dc7d-3eea-4b1b-9096-418b67c67e14}"
+  generationTool="Dymola Version 2023x, 2022-10-07"
+  generationDateAndTime="2024-12-12T17:07:19Z"
+  variableNamingConvention="structured"
+  numberOfEventIndicators="0">
+  <CoSimulation
+    modelIdentifier="LorenzAttractor"
+    canHandleVariableCommunicationStepSize="true"
+    canInterpolateInputs="true"
+    maxOutputDerivativeOrder="1"
+    canNotUseMemoryManagementFunctions="true"
+    canGetAndSetFMUstate="true"
+    canSerializeFMUstate="true"
+    providesDirectionalDerivative="true">
+    <SourceFiles>
+      <File
+        name="all.c"/>
+    </SourceFiles>
+  </CoSimulation>
+  <DefaultExperiment startTime="0.0"
+    stopTime="10.0"
+    tolerance="1E-05"/>
+  <ModelVariables>
+    <!-- Index for next variable = 1 -->
+    <ScalarVariable
+      name="sigma"
+      valueReference="16777216"
+      causality="parameter"
+      variability="tunable">
+      <Real start="10"/>
+    </ScalarVariable>
+    <!-- Index for next variable = 2 -->
+    <ScalarVariable
+      name="r"
+      valueReference="16777217"
+      causality="parameter"
+      variability="tunable">
+      <Real start="28"/>
+    </ScalarVariable>
+    <!-- Index for next variable = 3 -->
+    <ScalarVariable
+      name="b"
+      valueReference="16777218"
+      causality="parameter"
+      variability="tunable">
+      <Real start="2.6666666666666665"/>
+    </ScalarVariable>
+    <!-- Index for next variable = 4 -->
+    <ScalarVariable
+      name="x"
+      valueReference="33554432"
+      initial="exact">
+      <Real start="1"/>
+    </ScalarVariable>
+    <!-- Index for next variable = 5 -->
+    <ScalarVariable
+      name="der(x)"
+      valueReference="587202560">
+      <Real derivative="4"/>
+    </ScalarVariable>
+    <!-- Index for next variable = 6 -->
+    <ScalarVariable
+      name="y"
+      valueReference="33554433"
+      initial="exact">
+      <Real start="0.0"/>
+    </ScalarVariable>
+    <!-- Index for next variable = 7 -->
+    <ScalarVariable
+      name="der(y)"
+      valueReference="587202561">
+      <Real derivative="6"/>
+    </ScalarVariable>
+    <!-- Index for next variable = 8 -->
+    <ScalarVariable
+      name="z"
+      valueReference="33554434"
+      initial="exact">
+      <Real start="0.0"/>
+    </ScalarVariable>
+    <!-- Index for next variable = 9 -->
+    <ScalarVariable
+      name="der(z)"
+      valueReference="587202562">
+      <Real derivative="8"/>
+    </ScalarVariable>
+  </ModelVariables>
+  <ModelStructure>
+    <Derivatives>
+      <Unknown index="5"
+        dependencies="4 6"
+        dependenciesKind="fixed fixed"/>
+      <Unknown index="7"
+        dependencies="4 6 8"
+        dependenciesKind="dependent fixed dependent"/>
+      <Unknown index="9"
+        dependencies="4 6 8"
+        dependenciesKind="dependent dependent fixed"/>
+    </Derivatives>
+    <InitialUnknowns>
+      <Unknown index="5"
+        dependencies="1 4 6"
+        dependenciesKind="dependent dependent dependent"/>
+      <Unknown index="7"
+        dependencies="2 4 6 8"
+        dependenciesKind="dependent dependent dependent dependent"/>
+      <Unknown index="9"
+        dependencies="3 4 6 8"
+        dependenciesKind="dependent dependent dependent dependent"/>
+    </InitialUnknowns>
+  </ModelStructure>
+</fmiModelDescription>
